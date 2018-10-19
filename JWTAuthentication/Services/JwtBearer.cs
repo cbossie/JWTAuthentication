@@ -10,18 +10,27 @@ namespace JWTAuthentication.Services
 {
     public class JwtBearer : JwtBearerOptions
     {
-        private JwtBearer()
+        private IUserService _svc;
+
+        private JwtBearer(IUserService svc)
         {
             RequireHttpsMetadata = false;
             SaveToken = true;
             TokenValidationParameters = GetValidationParameters();
-            
-            
+            Events = GetEvents();
         }
 
-        
+        private static JwtBearerEvents GetEvents()
+        {
+            JwtBearerEvents events = new JwtBearerEvents();
+            events.OnTokenValidated = OnTokenValidated;
+            return events;
+        }
 
-        public static JwtBearer GetBearer => new JwtBearer();
+        private static Task OnTokenValidated(TokenValidatedContext arg)
+        {
+            throw new NotImplementedException();
+        }
 
 
         private static TokenValidationParameters GetValidationParameters()
@@ -30,7 +39,7 @@ namespace JWTAuthentication.Services
 
             param.ValidateIssuerSigningKey = true;
             param.RequireSignedTokens = true;
-            param.IssuerSigningKey = new X509SecurityKey(CertificateUtilities.GetCertificate("xcm_cb_public.cer"));
+            param.IssuerSigningKey = new X509SecurityKey(CertificateUtilities.GetCertificate("cb_public.cer"));
             param.ValidateIssuer = false;
             param.ValidateAudience = false;
 
