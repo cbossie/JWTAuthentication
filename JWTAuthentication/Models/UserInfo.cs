@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RedisDemoClient;
 
 namespace JWTAuthentication.Models
 {
-    public class UserInfo
+    public class UserInfo : UserCacheData
     {
-        public int UserID { get; set; }
-        public int? FirmID { get; set; }
-        public string AccessCode { get; set; }
-        
+       public int UserIdFromClaim { get; set; }
+        public int FirmIdFromClaim { get; set; }
+       
     }
 }

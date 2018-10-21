@@ -1,22 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="StackExchange.Redis" Version="2.0.513" />
     <PackageReference Include="StackExchange.Redis.Extensions.Newtonsoft" Version="3.5.0" />
     <PackageReference Include="StackExchange.Redis.Extensions.Protobuf" Version="3.5.0" />
     <PackageReference Include="StackExchange.Redis.StrongName" Version="1.2.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.IdentityModel.Tokens">
-      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.3.0\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using JWTAuthentication.Models;
 using Microsoft.AspNetCore.Http;
+using RedisDemoClient;
+using StackExchange.Redis.Extensions.Newtonsoft;
 
 namespace JWTAuthentication.Services
 {
@@ -20,23 +22,33 @@ namespace JWTAuthentication.Services
 
         private async Task PopulateCurrentUser()
         {
-            _currUser = new UserInfo()
-            {
-                AccessCode = HttpContext.HttpContext.User?.FindFirstValue(Constants.ClaimTypes.AccessClaim)
-            };
+            string code = HttpContext.HttpContext.User?.FindFirstValue(Constants.ClaimTypes.AccessClaim);
+            var userClaim = int.Parse(HttpContext.HttpContext.User.FindFirstValue(ClaimTypes.Sid));
+            var firmClaim = int.Parse(HttpContext.HttpContext.User.FindFirstValue(Constants.ClaimTypes.FirmClaim));
 
-            var userClaim = HttpContext.HttpContext.User.FindFirstValue(ClaimTypes.Sid);
-            if (int.TryParse(userClaim, out int userID))
-            {
-                _currUser.UserID = userID;
-            }
 
-            var firmClaim = HttpContext.HttpContext.User.FindFirstValue(Constants.ClaimTypes.FirmClaim);
-            if (int.TryParse(firmClaim, out int firmId))
+            //Do the redis thing
+            var config = RedisConfiguration.CreateFromString(Environment.GetEnvironmentVariable("XCM_REDIS_CONN"));
+            using (var cli = new RedisClient(config, new NewtonsoftSerializer()))
             {
-                _currUser.FirmID = firmId;
+
+                var user = await cli.GetObjectAsync<UserInfo>(code);
+                if (user != null)
+                {
+                    _currUser = user;
+                    _currUser.FirmIdFromClaim = firmClaim;
+                    _currUser.UserIdFromClaim = userClaim;
+                }
+                else
+                {
+                    _currUser = new UserInfo();
+                }
             }
         }
+
+       
+
+
 
         public async Task<UserInfo> GetCurrentUserAsync()
         {

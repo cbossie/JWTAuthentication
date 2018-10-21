@@ -28,14 +28,8 @@ namespace JWTAuthentication.Controllers
         {
             var user = await UserSvc.GetCurrentUserAsync();
 
-            var retVal = new
-            {
-                firmId = user.FirmID,
-                userId = user.UserID,
-                accessCode = user.AccessCode
-            };
 
-            return Ok(retVal);
+            return Ok(user);
         }
 
      

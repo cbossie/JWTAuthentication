@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT_Generation", "JWT_Generation\JWT_Generation.csproj", "{A56FE20E-2725-4833-BD87-20F7ECEF3054}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTAuthentication", "JWTAuthentication\JWTAuthentication.csproj", "{325C92D3-4A6A-4FF2-A31D-B441A8D16808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTAuthentication", "JWTAuthentication\JWTAuthentication.csproj", "{325C92D3-4A6A-4FF2-A31D-B441A8D16808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTUtilities", "JWTUtilities\JWTUtilities.csproj", "{EF2942D2-09F6-4B6E-8CF4-6EEF36B9C227}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTUtilities", "JWTUtilities\JWTUtilities.csproj", "{EF2942D2-09F6-4B6E-8CF4-6EEF36B9C227}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWTTest", "JWTTest\JWTTest.csproj", "{21278800-B191-402D-8652-3080ACF27412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JWTTest", "JWTTest\JWTTest.csproj", "{21278800-B191-402D-8652-3080ACF27412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisDemoClient", "RedisDemoClient\RedisDemoClient.csproj", "{8F595C45-9030-40F8-953B-4D334660614D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{21278800-B191-402D-8652-3080ACF27412}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21278800-B191-402D-8652-3080ACF27412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21278800-B191-402D-8652-3080ACF27412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F595C45-9030-40F8-953B-4D334660614D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F595C45-9030-40F8-953B-4D334660614D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F595C45-9030-40F8-953B-4D334660614D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F595C45-9030-40F8-953B-4D334660614D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
