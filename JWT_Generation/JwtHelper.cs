@@ -15,7 +15,7 @@ namespace JWT_Generation
     {
 
 
-        public static string GetJwt(X509Certificate2 cert, string accessCode)
+        public static string GetJwt(X509Certificate2 cert, string accessCode, int userId, int firmId)
         {
             Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
             var securityKey = new X509SecurityKey(cert);
@@ -23,8 +23,9 @@ namespace JWT_Generation
 
             var claimsIdentity = new ClaimsIdentity(new List<Claim>()
             {
-                new Claim(ClaimTypes.Sid, "95"),
-                new Claim("xcm:graphqlaccesstoken", accessCode)
+                new Claim(ClaimTypes.Sid, userId.ToString()),
+                new Claim("cb:accesscode", accessCode),
+                new Claim("cb:firmid", firmId.ToString())
 
                 
             }, "Custom");
@@ -33,7 +34,7 @@ namespace JWT_Generation
 
             var securityTokenDescriptor = new SecurityTokenDescriptor()
             {
-                Expires = DateTime.Now.AddDays(1),
+                Expires = DateTime.Now.AddDays(180),
                 SigningCredentials = cred,
                 Subject = claimsIdentity
             };

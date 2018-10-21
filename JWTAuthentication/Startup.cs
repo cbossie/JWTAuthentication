@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JWTAuthentication.Models;
+using JWTAuthentication.Services;
 using JWTUtilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -32,7 +33,10 @@ namespace JWTAuthentication
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            
+            services.AddHttpContextAccessor();
+
+            services.AddScoped<IUserService, UserService>();
+
 
             services.AddAuthentication(a =>
             {
@@ -51,6 +55,7 @@ namespace JWTAuthentication
                     ValidateAudience = false
                 };
             });
+            
 
 
         }

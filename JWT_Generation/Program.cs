@@ -21,7 +21,7 @@ namespace JWT_Generation
             var cert = CertificateHelper.GetCertificate(certificateFile, passKeySecure);
 
 
-            var jwt = JwtHelper.GetJwt(cert, "CRAIG");
+            var jwt = JwtHelper.GetJwt(cert, "ABCDEFG", 98, 444);
 
 
             Console.WriteLine(jwt);
