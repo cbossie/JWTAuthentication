@@ -46,7 +46,7 @@ namespace JWTAuthentication
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new X509SecurityKey(CertificateUtilities.GetCertificate("xcm_cb_public.cer")),
+                    IssuerSigningKey = new X509SecurityKey(CertificateUtilities.GetCertificate(Configuration.GetValue<string>("XCM_AUTH_CERT"))),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
